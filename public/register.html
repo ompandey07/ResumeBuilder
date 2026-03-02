@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Account — ResumeForge</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;min-height:100vh;display:flex;background:#ffffff}
+
+.left-panel{flex:0 0 52%;background:linear-gradient(160deg,#faf5ff 0%,#f0f4ff 40%,#f5f3ff 70%,#e8ecff 100%);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:60px;position:relative;overflow:hidden;border-right:1px solid #e5e7eb}
+.grid-bg{position:absolute;inset:0;background-image:radial-gradient(circle,#d1d5db 1px,transparent 1px);background-size:28px 28px;opacity:.2}
+.left-panel::before{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(139,92,246,0.07) 0%,transparent 70%);top:-100px;left:-100px;border-radius:50%}
+.left-content{position:relative;z-index:2;max-width:460px}
+.left-logo{width:72px;height:72px;background:#fff;border-radius:18px;display:flex;align-items:center;justify-content:center;margin-bottom:32px;box-shadow:0 4px 16px rgba(139,92,246,0.1),0 1px 3px rgba(0,0,0,0.06);border:1px solid #e5e7eb}
+.left-logo i{width:36px;height:36px;color:#8b5cf6}
+.left-content h1{font-size:42px;font-weight:900;color:#111827;letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px}
+.left-content h1 span{background:linear-gradient(135deg,#8b5cf6,#6366f1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.left-content>p{font-size:17px;color:#6b7280;line-height:1.7;margin-bottom:48px}
+.trust-row{display:flex;gap:32px}
+.trust-item{text-align:center}
+.trust-item .num{font-size:32px;font-weight:900;color:#111827;display:block;letter-spacing:-1px}
+.trust-item .lbl{font-size:13px;color:#9ca3af;font-weight:500;margin-top:2px}
+.testimonial{background:#ffffff;border:1px solid #e5e7eb;border-radius:16px;padding:24px;margin-top:40px;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
+.testimonial p{font-size:14px;color:#4b5563;line-height:1.6;font-style:italic;margin-bottom:12px}
+.testimonial-author{display:flex;align-items:center;gap:10px}
+.testimonial-avatar{width:36px;height:36px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:700}
+.testimonial-name{font-size:13px;font-weight:700;color:#111827}
+.testimonial-role{font-size:12px;color:#9ca3af}
+
+.right-panel{flex:1;display:flex;align-items:center;justify-content:center;padding:48px;background:#ffffff;overflow-y:auto}
+.card{width:100%;max-width:440px}
+.card-top{margin-bottom:32px}
+.card-top .badge{display:inline-flex;align-items:center;gap:6px;background:#eff6ff;color:#2563eb;font-size:12px;font-weight:700;padding:6px 14px;border-radius:20px;margin-bottom:22px;border:1px solid #bfdbfe;letter-spacing:.3px}
+.card-top .badge i{width:14px;height:14px}
+.card-top h2{font-size:28px;font-weight:900;color:#111827;letter-spacing:-0.8px;margin-bottom:8px}
+.card-top p{font-size:15px;color:#9ca3af}
+.card-top p a{color:#6366f1;text-decoration:none;font-weight:600}
+.card-top p a:hover{color:#4f46e5}
+
+.form-group{margin-bottom:20px}
+.form-group label{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:#374151;margin-bottom:8px}
+.form-group label i{width:15px;height:15px;color:#9ca3af}
+.input-wrap{position:relative}
+.input-wrap i.ico{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:#c7c7c7;pointer-events:none;transition:color .2s}
+.form-group input{width:100%;padding:14px 16px 14px 48px;background:#fafafa;border:2px solid #e5e7eb;border-radius:12px;font-size:15px;font-family:inherit;color:#111827;transition:all .25s;outline:none}
+.form-group input::placeholder{color:#c7c7c7}
+.form-group input:focus{border-color:#6366f1;background:#fff;box-shadow:0 0 0 4px rgba(99,102,241,0.08)}
+.form-group input.err{border-color:#ef4444;box-shadow:0 0 0 4px rgba(239,68,68,0.06)}
+.form-group input.ok{border-color:#10b981;box-shadow:0 0 0 4px rgba(16,185,129,0.06)}
+.hint{font-size:11px;color:#9ca3af;margin-top:6px;display:flex;align-items:center;gap:5px}
+.hint i{width:12px;height:12px}
+
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+.pw-meter{display:flex;gap:3px;margin-top:8px}
+.pw-bar{height:4px;flex:1;border-radius:2px;background:#e5e7eb;transition:all .3s}
+.pw-label{font-size:11px;margin-top:5px;font-weight:600;color:#9ca3af;transition:color .3s}
+
+.btn{width:100%;padding:15px;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:4px}
+.btn-primary{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;box-shadow:0 4px 16px rgba(99,102,241,0.25)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(99,102,241,0.35)}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none!important}
+.btn i{width:18px;height:18px}
+.spinner{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+#toast-container{position:fixed;top:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:12px;pointer-events:none}
+.toast{padding:16px 22px;border-radius:14px;font-size:14px;font-weight:500;display:flex;align-items:center;gap:12px;animation:slideIn .45s cubic-bezier(.16,1,.3,1);min-width:320px;pointer-events:auto;cursor:pointer}
+.toast-success{background:#fff;color:#065f46;border:1px solid #a7f3d0;box-shadow:0 10px 40px rgba(5,150,105,0.12)}
+.toast-error{background:#fff;color:#991b1b;border:1px solid #fecaca;box-shadow:0 10px 40px rgba(239,68,68,0.12)}
+.toast-hide{animation:slideOut .3s ease forwards}
+.toast i{width:20px;height:20px;flex-shrink:0}
+.toast-success i{color:#059669}.toast-error i{color:#dc2626}
+@keyframes slideIn{from{transform:translateX(120%);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes slideOut{to{transform:translateX(120%);opacity:0}}
+
+@media(max-width:1000px){.left-panel{display:none}.right-panel{padding:28px 20px}.form-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="left-panel">
+  <div class="grid-bg"></div>
+  <div class="left-content">
+    <div class="left-logo"><i data-lucide="file-text"></i></div>
+    <h1>Start your <span>career journey</span> today.</h1>
+    <p>Join thousands of professionals who create standout resumes that land interviews.</p>
+    <div class="trust-row">
+      <div class="trust-item"><span class="num">10K+</span><span class="lbl">Happy Users</span></div>
+      <div class="trust-item"><span class="num">50K+</span><span class="lbl">Resumes Built</span></div>
+      <div class="trust-item"><span class="num">99%</span><span class="lbl">Satisfaction</span></div>
+    </div>
+    <div class="testimonial">
+      <p>"ResumeForge helped me create a professional resume in under 10 minutes. I landed 3 interviews in the first week!"</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">SK</div>
+        <div><div class="testimonial-name">Sarah K.</div><div class="testimonial-role">Software Engineer</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="right-panel">
+  <div class="card">
+    <div class="card-top">
+      <div class="badge"><i data-lucide="zap"></i> Get started free</div>
+      <h2>Create your account</h2>
+      <p>Already have one? <a href="/">Sign in →</a></p>
+    </div>
+    <form id="registerForm">
+      <div class="form-group">
+        <label><i data-lucide="user"></i> Full Name</label>
+        <div class="input-wrap"><input type="text" id="fullName" placeholder="John Doe" required><i data-lucide="user" class="ico"></i></div>
+      </div>
+      <div class="form-group">
+        <label><i data-lucide="mail"></i> Email Address</label>
+        <div class="input-wrap"><input type="email" id="email" placeholder="you@company.com" required><i data-lucide="mail" class="ico"></i></div>
+        <div class="hint"><i data-lucide="info"></i> Use a real email address — fakes will be rejected</div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label><i data-lucide="lock"></i> Password</label>
+          <div class="input-wrap"><input type="password" id="password" placeholder="Min 6 chars" required><i data-lucide="lock" class="ico"></i></div>
+          <div class="pw-meter"><div class="pw-bar" id="b1"></div><div class="pw-bar" id="b2"></div><div class="pw-bar" id="b3"></div><div class="pw-bar" id="b4"></div></div>
+          <div class="pw-label" id="pwLabel"></div>
+        </div>
+        <div class="form-group">
+          <label><i data-lucide="lock-keyhole"></i> Confirm</label>
+          <div class="input-wrap"><input type="password" id="confirmPassword" placeholder="Re-enter" required><i data-lucide="lock-keyhole" class="ico"></i></div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" id="submitBtn"><i data-lucide="user-plus"></i> Create Account</button>
+    </form>
+  </div>
+</div>
+<div id="toast-container"></div>
+<script>
+lucide.createIcons();
+function showToast(msg,type='error'){
+  const c=document.getElementById('toast-container'),t=document.createElement('div');
+  t.className='toast toast-'+type;
+  t.innerHTML=`<i data-lucide="${type==='success'?'check-circle-2':'alert-circle'}"></i><span>${msg}</span>`;
+  c.appendChild(t);lucide.createIcons();
+  t.onclick=()=>{t.classList.add('toast-hide');setTimeout(()=>t.remove(),300)};
+  setTimeout(()=>{if(t.parentNode){t.classList.add('toast-hide');setTimeout(()=>t.remove(),300)}},4000);
+}
+function setLoad(btn,l){
+  if(l){btn.disabled=true;btn.dataset.o=btn.innerHTML;btn.innerHTML='<span class="spinner"></span> Creating...';}
+  else{btn.disabled=false;btn.innerHTML=btn.dataset.o;lucide.createIcons();}
+}
+document.getElementById('password').addEventListener('input',function(){
+  const v=this.value;let s=0;
+  if(v.length>=6)s++;if(v.length>=8)s++;if(/[A-Z]/.test(v)&&/[0-9]/.test(v))s++;if(/[^A-Za-z0-9]/.test(v))s++;
+  const cols=['#ef4444','#f59e0b','#3b82f6','#10b981'],labs=['Weak','Fair','Good','Strong'];
+  for(let i=1;i<=4;i++){document.getElementById('b'+i).style.background=i<=s?cols[s-1]:'#e5e7eb'}
+  const pl=document.getElementById('pwLabel');pl.textContent=s>0?labs[s-1]:'';pl.style.color=s>0?cols[s-1]:'#9ca3af';
+});
+document.getElementById('email').addEventListener('blur',function(){
+  const v=this.value.trim();if(!v)return this.classList.remove('err','ok');
+  const re=/^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if(!re.test(v)||/^\d+$/.test(v.split('@')[0])){this.classList.add('err');this.classList.remove('ok');}
+  else{this.classList.add('ok');this.classList.remove('err');}
+});
+document.getElementById('registerForm').addEventListener('submit',async e=>{
+  e.preventDefault();const btn=document.getElementById('submitBtn');
+  const fullName=document.getElementById('fullName').value.trim(),email=document.getElementById('email').value.trim();
+  const password=document.getElementById('password').value,confirmPassword=document.getElementById('confirmPassword').value;
+  if(!fullName||!email||!password||!confirmPassword){showToast('All fields are required');return;}
+  if(fullName.length<2){showToast('Name must be at least 2 characters');return;}
+  const re=/^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if(!re.test(email)){showToast('Please enter a valid email address');return;}
+  if(/^\d+$/.test(email.split('@')[0])){showToast('Please use a real email address');return;}
+  if(password.length<6){showToast('Password must be at least 6 characters');return;}
+  if(password!==confirmPassword){showToast('Passwords do not match');return;}
+  setLoad(btn,true);
+  try{
+    const r=await fetch('/api/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fullName,email,password,confirmPassword})});
+    const d=await r.json();
+    if(d.success){showToast(d.message,'success');setTimeout(()=>window.location.href='/',1200);}
+    else{showToast(d.error);setLoad(btn,false);}
+  }catch(e){showToast('Network error');setLoad(btn,false);}
+});
+</script>
+</body>
+</html>

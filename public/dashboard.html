@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — ResumeForge</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#f8f9fb;min-height:100vh;color:#111827}
+
+.navbar{background:#ffffff;border-bottom:1px solid #e5e7eb;padding:0 36px;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-brand{display:flex;align-items:center;gap:11px;font-size:18px;font-weight:800;color:#111827;letter-spacing:-0.3px}
+.nav-logo{width:36px;height:36px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:9px;display:flex;align-items:center;justify-content:center}
+.nav-logo i{width:20px;height:20px;color:#fff}
+.nav-right{display:flex;align-items:center;gap:12px}
+.user-pill{display:flex;align-items:center;gap:10px;background:#f3f4f6;padding:7px 16px 7px 8px;border-radius:50px;border:1px solid #e5e7eb}
+.user-avatar{width:30px;height:30px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.user-avatar i{width:15px;height:15px;color:#fff}
+.user-pill span{font-size:13px;font-weight:600;color:#374151}
+.btn{padding:9px 18px;border:none;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;display:inline-flex;align-items:center;gap:7px;text-decoration:none}
+.btn i{width:16px;height:16px}
+.btn-logout{background:#fff;color:#ef4444;border:1px solid #fecaca}
+.btn-logout:hover{background:#fef2f2}
+
+.container{max-width:1120px;margin:0 auto;padding:36px 28px}
+
+.hero{display:flex;align-items:center;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:16px}
+.hero-left h1{font-size:32px;font-weight:900;color:#111827;letter-spacing:-1px;margin-bottom:6px}
+.hero-left p{font-size:15px;color:#9ca3af}
+.hero-left p b{color:#6366f1}
+.btn-create{padding:14px 28px;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;border-radius:12px;font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:inherit;transition:all .3s;display:inline-flex;align-items:center;gap:9px;text-decoration:none;box-shadow:0 4px 16px rgba(99,102,241,0.2)}
+.btn-create:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(99,102,241,0.3)}
+.btn-create i{width:18px;height:18px}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:36px}
+.stat{background:#ffffff;border:1px solid #e5e7eb;border-radius:14px;padding:22px 24px;display:flex;align-items:center;gap:16px;transition:all .2s}
+.stat:hover{box-shadow:0 4px 16px rgba(0,0,0,0.04);border-color:#d1d5db}
+.stat-ico{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.stat-ico i{width:24px;height:24px}
+.stat-ico.p{background:#ede9fe;color:#7c3aed}
+.stat-ico.g{background:#d1fae5;color:#059669}
+.stat-ico.b{background:#dbeafe;color:#3b82f6}
+.stat .val{font-size:28px;font-weight:900;color:#111827;letter-spacing:-1px}
+.stat .lbl{font-size:12px;color:#9ca3af;font-weight:500;margin-top:2px}
+
+.section-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#9ca3af;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.section-title i{width:16px;height:16px}
+
+.resume-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:18px}
+.resume-card{background:#ffffff;border:1px solid #e5e7eb;border-radius:16px;padding:28px;transition:all .25s;position:relative;overflow:hidden}
+.resume-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#6366f1,#8b5cf6,#a855f7);transform:scaleX(0);transition:transform .3s;transform-origin:left}
+.resume-card:hover{border-color:#c7d2fe;box-shadow:0 8px 30px rgba(99,102,241,0.08);transform:translateY(-3px)}
+.resume-card:hover::after{transform:scaleX(1)}
+.card-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px}
+.card-ico{width:46px;height:46px;background:#f5f3ff;border-radius:12px;display:flex;align-items:center;justify-content:center;border:1px solid #ede9fe}
+.card-ico i{width:22px;height:22px;color:#7c3aed}
+.resume-card h3{font-size:17px;font-weight:700;color:#111827;margin-bottom:10px;letter-spacing:-0.3px}
+.meta-row{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.meta{display:flex;align-items:center;gap:5px;font-size:12px;color:#9ca3af;font-weight:500}
+.meta i{width:13px;height:13px}
+.card-btns{display:flex;gap:8px}
+.btn-sm{padding:9px 14px;border:none;border-radius:9px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s;display:inline-flex;align-items:center;gap:5px}
+.btn-sm i{width:14px;height:14px}
+.bv{background:#f5f3ff;color:#7c3aed;border:1px solid #ede9fe}.bv:hover{background:#ede9fe}
+.be{background:#eff6ff;color:#3b82f6;border:1px solid #bfdbfe}.be:hover{background:#dbeafe}
+.bd{background:#fef2f2;color:#ef4444;border:1px solid #fecaca}.bd:hover{background:#fee2e2}
+
+.empty{text-align:center;padding:80px 24px}
+.empty-ico{width:80px;height:80px;background:#f5f3ff;border:1px solid #ede9fe;border-radius:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 22px}
+.empty-ico i{width:40px;height:40px;color:#7c3aed}
+.empty h3{font-size:20px;font-weight:700;color:#111827;margin-bottom:8px}
+.empty p{font-size:14px;color:#9ca3af;margin-bottom:24px}
+
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.3);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:1000}
+.modal-overlay.active{display:flex}
+.modal{background:#fff;border-radius:18px;padding:36px;max-width:400px;width:90%;text-align:center;box-shadow:0 25px 60px rgba(0,0,0,0.15);border:1px solid #e5e7eb}
+.modal-ico{width:60px;height:60px;background:#fef2f2;border:1px solid #fecaca;border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+.modal-ico i{width:28px;height:28px;color:#ef4444}
+.modal h3{font-size:20px;font-weight:700;color:#111827;margin-bottom:8px}
+.modal p{color:#6b7280;font-size:14px;margin-bottom:24px;line-height:1.5}
+.modal-btns{display:flex;gap:12px}
+.modal .mbtn{flex:1;padding:12px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;border:none;transition:all .2s}
+.mc{background:#f3f4f6;color:#374151;border:1px solid #e5e7eb}.mc:hover{background:#e5e7eb}
+.md{background:#ef4444;color:#fff}.md:hover{background:#dc2626}
+
+.loading{text-align:center;padding:60px;color:#9ca3af;font-size:15px;display:flex;align-items:center;justify-content:center;gap:10px}
+.loading i{width:20px;height:20px;animation:spin 1s linear infinite;color:#6366f1}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+#toast-container{position:fixed;top:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:12px;pointer-events:none}
+.toast{padding:16px 22px;border-radius:14px;font-size:14px;font-weight:500;display:flex;align-items:center;gap:12px;animation:slideIn .45s cubic-bezier(.16,1,.3,1);min-width:320px;pointer-events:auto;cursor:pointer}
+.toast-success{background:#fff;color:#065f46;border:1px solid #a7f3d0;box-shadow:0 10px 40px rgba(5,150,105,0.12)}
+.toast-error{background:#fff;color:#991b1b;border:1px solid #fecaca;box-shadow:0 10px 40px rgba(239,68,68,0.12)}
+.toast-hide{animation:slideOut .3s ease forwards}
+.toast i{width:20px;height:20px;flex-shrink:0}
+.toast-success i{color:#059669}.toast-error i{color:#dc2626}
+@keyframes slideIn{from{transform:translateX(120%);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes slideOut{to{transform:translateX(120%);opacity:0}}
+
+@media(max-width:700px){.navbar{padding:0 16px}.container{padding:24px 16px}.hero{flex-direction:column;align-items:flex-start}.stats{grid-template-columns:1fr}.resume-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-brand"><div class="nav-logo"><i data-lucide="file-text"></i></div> ResumeForge</div>
+  <div class="nav-right">
+    <div class="user-pill"><div class="user-avatar"><i data-lucide="user"></i></div><span id="userName">Loading...</span></div>
+    <button class="btn btn-logout" onclick="logout()"><i data-lucide="log-out"></i> Logout</button>
+  </div>
+</nav>
+<div class="container">
+  <div class="hero">
+    <div class="hero-left">
+      <h1 id="greeting">Welcome back!</h1>
+      <p>Manage your resumes from the <b>dashboard</b></p>
+    </div>
+    <a href="/resume-form" class="btn-create"><i data-lucide="plus"></i> Create New Resume</a>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="stat-ico p"><i data-lucide="file-text"></i></div><div><div class="val" id="totalCount">-</div><div class="lbl">Total Resumes</div></div></div>
+    <div class="stat"><div class="stat-ico g"><i data-lucide="calendar-check"></i></div><div><div class="val" id="latestDate">-</div><div class="lbl">Last Updated</div></div></div>
+    <div class="stat"><div class="stat-ico b"><i data-lucide="crown"></i></div><div><div class="val">Free</div><div class="lbl">Current Plan</div></div></div>
+  </div>
+  <div class="section-title"><i data-lucide="folder-open"></i> All Resumes</div>
+  <div id="resumeList" class="loading"><i data-lucide="loader-2"></i> Loading your resumes...</div>
+</div>
+<div class="modal-overlay" id="deleteModal">
+  <div class="modal">
+    <div class="modal-ico"><i data-lucide="trash-2"></i></div>
+    <h3>Delete this resume?</h3>
+    <p>This is permanent. Once deleted, the resume cannot be recovered.</p>
+    <div class="modal-btns">
+      <button class="mbtn mc" onclick="closeModal()">Cancel</button>
+      <button class="mbtn md" onclick="confirmDelete()">Delete</button>
+    </div>
+  </div>
+</div>
+<div id="toast-container"></div>
+<script>
+lucide.createIcons();let deleteId=null;
+function showToast(msg,type='error'){
+  const c=document.getElementById('toast-container'),t=document.createElement('div');
+  t.className='toast toast-'+type;t.innerHTML=`<i data-lucide="${type==='success'?'check-circle-2':'alert-circle'}"></i><span>${msg}</span>`;
+  c.appendChild(t);lucide.createIcons();t.onclick=()=>{t.classList.add('toast-hide');setTimeout(()=>t.remove(),300)};
+  setTimeout(()=>{if(t.parentNode){t.classList.add('toast-hide');setTimeout(()=>t.remove(),300)}},4000);
+}
+async function loadUser(){
+  try{const r=await fetch('/api/me');const d=await r.json();
+    if(!d.user){location.href='/';return}document.getElementById('userName').textContent=d.user.full_name;
+    const h=new Date().getHours(),g=h<12?'Good morning':h<17?'Good afternoon':'Good evening';
+    document.getElementById('greeting').textContent=`${g}, ${d.user.full_name.split(' ')[0]}!`;
+  }catch(e){location.href='/'}
+}
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function fmt(d){return new Date(d).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
+function fmtS(d){return new Date(d).toLocaleDateString('en-US',{month:'short',day:'numeric'})}
+async function loadResumes(){
+  try{const r=await fetch('/api/resumes');const d=await r.json();const el=document.getElementById('resumeList');
+    document.getElementById('totalCount').textContent=d.resumes?.length||0;
+    if(d.resumes?.length)document.getElementById('latestDate').textContent=fmtS(d.resumes[0].updated_at);
+    if(!d.resumes||!d.resumes.length){
+      el.className='';el.innerHTML=`<div class="empty"><div class="empty-ico"><i data-lucide="file-plus-2"></i></div><h3>No resumes yet</h3><p>Create your first professional resume to get started</p><a href="/resume-form" class="btn-create"><i data-lucide="plus"></i> Create First Resume</a></div>`;
+      lucide.createIcons();return;
+    }
+    el.className='resume-grid';
+    el.innerHTML=d.resumes.map(r=>`<div class="resume-card"><div class="card-head"><div class="card-ico"><i data-lucide="file-text"></i></div></div>
+      <h3>${esc(r.title)}</h3><div class="meta-row"><div class="meta"><i data-lucide="clock"></i> Updated ${fmt(r.updated_at)}</div><div class="meta"><i data-lucide="calendar"></i> Created ${fmt(r.created_at)}</div></div>
+      <div class="card-btns"><button class="btn-sm bv" onclick="location.href='/resume-view/${r.id}'"><i data-lucide="eye"></i> View</button><button class="btn-sm be" onclick="location.href='/resume-form?id=${r.id}'"><i data-lucide="pencil"></i> Edit</button><button class="btn-sm bd" onclick="openDel(${r.id})"><i data-lucide="trash-2"></i> Delete</button></div></div>`).join('');
+    lucide.createIcons();
+  }catch(e){showToast('Failed to load resumes')}
+}
+function openDel(id){deleteId=id;document.getElementById('deleteModal').classList.add('active');lucide.createIcons()}
+function closeModal(){deleteId=null;document.getElementById('deleteModal').classList.remove('active')}
+async function confirmDelete(){if(!deleteId)return;try{const r=await fetch('/api/resumes/'+deleteId,{method:'DELETE'});const d=await r.json();if(d.success){showToast('Deleted','success');closeModal();loadResumes()}else showToast(d.error)}catch(e){showToast('Failed')}}
+async function logout(){await fetch('/api/logout',{method:'POST'});location.href='/'}
+loadUser();loadResumes();
+</script>
+</body>
+</html>

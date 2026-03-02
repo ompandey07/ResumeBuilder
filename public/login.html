@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In — ResumeForge</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;min-height:100vh;display:flex;background:#ffffff}
+
+/* Left Panel */
+.left-panel{flex:0 0 52%;background:linear-gradient(160deg,#f0f4ff 0%,#e8ecff 30%,#f5f3ff 60%,#faf5ff 100%);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:60px;position:relative;overflow:hidden;border-right:1px solid #e5e7eb}
+.left-panel::before{content:'';position:absolute;width:450px;height:450px;background:radial-gradient(circle,rgba(99,102,241,0.08) 0%,transparent 70%);top:-80px;right:-80px;border-radius:50%}
+.left-panel::after{content:'';position:absolute;width:350px;height:350px;background:radial-gradient(circle,rgba(139,92,246,0.06) 0%,transparent 70%);bottom:-60px;left:-60px;border-radius:50%}
+.grid-bg{position:absolute;inset:0;background-image:radial-gradient(circle,#d1d5db 1px,transparent 1px);background-size:28px 28px;opacity:.25}
+.left-content{position:relative;z-index:2;max-width:460px}
+.left-logo{width:72px;height:72px;background:#ffffff;border-radius:18px;display:flex;align-items:center;justify-content:center;margin-bottom:32px;box-shadow:0 4px 16px rgba(99,102,241,0.12),0 1px 3px rgba(0,0,0,0.06);border:1px solid #e5e7eb}
+.left-logo i{width:36px;height:36px;color:#6366f1}
+.left-content h1{font-size:42px;font-weight:900;color:#111827;letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px}
+.left-content h1 span{background:linear-gradient(135deg,#6366f1,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.left-content>p{font-size:17px;color:#6b7280;line-height:1.7;margin-bottom:44px}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.feature-card{background:#ffffff;border-radius:14px;padding:20px;border:1px solid #e5e7eb;box-shadow:0 1px 4px rgba(0,0,0,0.04);transition:all .3s}
+.feature-card:hover{box-shadow:0 8px 24px rgba(99,102,241,0.1);border-color:#c7d2fe;transform:translateY(-2px)}
+.feature-card-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.feature-card-icon i{width:20px;height:20px}
+.feature-card-icon.purple{background:#ede9fe;color:#7c3aed}
+.feature-card-icon.blue{background:#dbeafe;color:#3b82f6}
+.feature-card-icon.green{background:#d1fae5;color:#059669}
+.feature-card-icon.amber{background:#fef3c7;color:#d97706}
+.feature-card h4{font-size:13px;font-weight:700;color:#1f2937;margin-bottom:4px}
+.feature-card p{font-size:12px;color:#9ca3af;line-height:1.4}
+
+/* Right Panel */
+.right-panel{flex:1;display:flex;align-items:center;justify-content:center;padding:48px;background:#ffffff}
+.card{width:100%;max-width:420px}
+.card-top{margin-bottom:40px}
+.card-top .welcome-badge{display:inline-flex;align-items:center;gap:6px;background:#f0fdf4;color:#16a34a;font-size:12px;font-weight:700;padding:6px 14px;border-radius:20px;margin-bottom:22px;border:1px solid #bbf7d0;letter-spacing:.3px}
+.card-top .welcome-badge i{width:14px;height:14px}
+.card-top h2{font-size:30px;font-weight:900;color:#111827;letter-spacing:-0.8px;margin-bottom:8px}
+.card-top p{font-size:15px;color:#9ca3af}
+.card-top p a{color:#6366f1;text-decoration:none;font-weight:600;transition:color .2s}
+.card-top p a:hover{color:#4f46e5}
+
+.form-group{margin-bottom:22px}
+.form-group label{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:#374151;margin-bottom:8px}
+.form-group label i{width:15px;height:15px;color:#9ca3af}
+.input-wrap{position:relative}
+.input-wrap i.ico{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:#c7c7c7;pointer-events:none;transition:color .2s}
+.form-group input{width:100%;padding:14px 16px 14px 48px;background:#fafafa;border:2px solid #e5e7eb;border-radius:12px;font-size:15px;font-family:inherit;color:#111827;transition:all .25s;outline:none}
+.form-group input::placeholder{color:#c7c7c7}
+.form-group input:focus{border-color:#6366f1;background:#ffffff;box-shadow:0 0 0 4px rgba(99,102,241,0.08)}
+.form-group input:focus+i.ico,.form-group input:focus~i.ico{color:#6366f1}
+
+.btn{width:100%;padding:15px;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:10px;position:relative}
+.btn-primary{background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 100%);color:#fff;box-shadow:0 4px 16px rgba(99,102,241,0.25)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(99,102,241,0.35)}
+.btn-primary:active{transform:translateY(0)}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none!important;box-shadow:0 4px 16px rgba(99,102,241,0.15)!important}
+.btn i{width:18px;height:18px}
+.spinner{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.separator{display:flex;align-items:center;margin:28px 0;gap:14px}
+.separator::before,.separator::after{content:'';flex:1;height:1px;background:#e5e7eb}
+.separator span{font-size:12px;color:#c7c7c7;font-weight:600;text-transform:uppercase;letter-spacing:1px}
+
+/* Toast */
+#toast-container{position:fixed;top:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:12px;pointer-events:none}
+.toast{padding:16px 22px;border-radius:14px;color:#fff;font-size:14px;font-weight:500;display:flex;align-items:center;gap:12px;animation:slideIn .45s cubic-bezier(.16,1,.3,1);min-width:320px;pointer-events:auto;cursor:pointer}
+.toast-success{background:#ffffff;color:#065f46;border:1px solid #a7f3d0;box-shadow:0 10px 40px rgba(5,150,105,0.12)}
+.toast-error{background:#ffffff;color:#991b1b;border:1px solid #fecaca;box-shadow:0 10px 40px rgba(239,68,68,0.12)}
+.toast-hide{animation:slideOut .3s ease forwards}
+.toast i{width:20px;height:20px;flex-shrink:0}
+.toast-success i{color:#059669}
+.toast-error i{color:#dc2626}
+@keyframes slideIn{from{transform:translateX(120%);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes slideOut{from{transform:translateX(0);opacity:1}to{transform:translateX(120%);opacity:0}}
+
+@media(max-width:1000px){
+  .left-panel{display:none}
+  .right-panel{padding:32px 24px}
+}
+</style>
+</head>
+<body>
+<div class="left-panel">
+  <div class="grid-bg"></div>
+  <div class="left-content">
+    <div class="left-logo"><i data-lucide="file-text"></i></div>
+    <h1>Build resumes that <span>get noticed.</span></h1>
+    <p>Create professional, ATS-friendly resumes in minutes. Land your dream job with a resume that truly represents you.</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-card-icon purple"><i data-lucide="sparkles"></i></div>
+        <h4>Pro Templates</h4>
+        <p>Clean, professional format ready to print</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon blue"><i data-lucide="printer"></i></div>
+        <h4>PDF Export</h4>
+        <p>One-click print or download as PDF</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon green"><i data-lucide="shield-check"></i></div>
+        <h4>Secure Storage</h4>
+        <p>Your data is encrypted and private</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon amber"><i data-lucide="infinity"></i></div>
+        <h4>Unlimited</h4>
+        <p>Create as many resumes as you need</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="right-panel">
+  <div class="card">
+    <div class="card-top">
+      <div class="welcome-badge"><i data-lucide="hand-metal"></i> Welcome back</div>
+      <h2>Sign in to your account</h2>
+      <p>New here? <a href="/register">Create a free account →</a></p>
+    </div>
+    <form id="loginForm">
+      <div class="form-group">
+        <label><i data-lucide="mail"></i> Email Address</label>
+        <div class="input-wrap">
+          <input type="email" id="email" placeholder="you@example.com" required autocomplete="email">
+          <i data-lucide="mail" class="ico"></i>
+        </div>
+      </div>
+      <div class="form-group">
+        <label><i data-lucide="lock"></i> Password</label>
+        <div class="input-wrap">
+          <input type="password" id="password" placeholder="Enter your password" required>
+          <i data-lucide="lock" class="ico"></i>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" id="submitBtn">
+        <i data-lucide="arrow-right"></i> Sign In
+      </button>
+    </form>
+  </div>
+</div>
+<div id="toast-container"></div>
+<script>
+lucide.createIcons();
+function showToast(msg,type='error'){
+  const c=document.getElementById('toast-container'),t=document.createElement('div');
+  t.className='toast toast-'+type;
+  t.innerHTML=`<i data-lucide="${type==='success'?'check-circle-2':'alert-circle'}"></i><span>${msg}</span>`;
+  c.appendChild(t);lucide.createIcons();
+  t.onclick=()=>{t.classList.add('toast-hide');setTimeout(()=>t.remove(),300)};
+  setTimeout(()=>{if(t.parentNode){t.classList.add('toast-hide');setTimeout(()=>t.remove(),300)}},4000);
+}
+function setLoad(btn,l){
+  if(l){btn.disabled=true;btn.dataset.o=btn.innerHTML;btn.innerHTML='<span class="spinner"></span> Signing in...';}
+  else{btn.disabled=false;btn.innerHTML=btn.dataset.o;lucide.createIcons();}
+}
+document.getElementById('loginForm').addEventListener('submit',async e=>{
+  e.preventDefault();const btn=document.getElementById('submitBtn');
+  const email=document.getElementById('email').value.trim(),password=document.getElementById('password').value;
+  if(!email||!password){showToast('Please fill in all fields');return;}
+  setLoad(btn,true);
+  try{
+    const r=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});
+    const d=await r.json();
+    if(d.success){showToast(d.message,'success');setTimeout(()=>window.location.href='/dashboard',900);}
+    else{showToast(d.error);setLoad(btn,false);}
+  }catch(e){showToast('Network error');setLoad(btn,false);}
+});
+</script>
+</body>
+</html>
