@@ -1,8 +1,6 @@
 <div align="center">
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=30&pause=1000&color=6C63FF&center=true&vCenter=true&width=600&lines=📄+Advanced+Resume+Builder;Built+with+Node.js+%2B+SQLite;Create+%7C+Preview+%7C+Export" alt="Typing SVG" />
-
-# Advanced Resume Builder
+# 📄 Advanced Resume Builder
 
 **A powerful full-stack web app to build, customize, and export stunning professional resumes.**
 
@@ -23,7 +21,7 @@
 
 **Advanced Resume Builder** is a full-stack web application that empowers users to create beautiful, professional resumes in minutes. Built from scratch using **HTML, CSS, JavaScript, Node.js, and SQLite** — no frameworks, pure power. Users fill out an intuitive multi-step form, see a live preview of their resume, and export it as a polished PDF — all with their data securely stored in a lightweight SQLite database.
 
-> 💡 Built with love by [Om Pandey](https://github.com/ompandey07) — check out the repo at [github.com/ompandey07/ResumeBuilder](https://github.com/ompandey07/ResumeBuilder)
+> 💡 Built by [Om Pandey](https://github.com/ompandey07) — [github.com/ompandey07/ResumeBuilder](https://github.com/ompandey07/ResumeBuilder)
 
 ---
 
@@ -154,16 +152,3 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 - [SQLite](https://sqlite.org) — Lightweight database
 - [Express.js](https://expressjs.com) — Web framework
 - [Shields.io](https://shields.io) — Beautiful badges
-
----
-
-<div align="center">
-
-### ⭐ If you found this project helpful, please give it a star!
-
-**Made with ❤️ by [Om Pandey](https://github.com/ompandey07)**
-
-[![GitHub followers](https://img.shields.io/github/followers/ompandey07?style=social)](https://github.com/ompandey07)
-[![GitHub stars](https://img.shields.io/github/stars/ompandey07/ResumeBuilder?style=social)](https://github.com/ompandey07/ResumeBuilder)
-
-</div>
